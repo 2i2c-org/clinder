@@ -1,0 +1,28 @@
+name: Setup Binder Session
+description: Provision a BinderHub session.
+
+inputs:
+  hub-url:
+    description: URL of BinderHub
+    required: true
+  repo:
+    description: GitHub repository, e.g jupyterlab/jupyterlab. Empty for this repository.
+    default: ${{ github.repository }}
+    required: true
+  ref:
+    description: GitHub ref. Empty for the current ref.
+    default: ${{ github.ref }}
+    required: true
+  build-token:
+    description: BinderHub build token
+    required: false
+outputs:
+  url:
+    description: The URL of the BinderHub session
+  token:
+    description: The token of the BinderHub session
+
+runs:
+  using: node20
+  main: packages/clinder-action/dist/main.cjs
+  post: packages/clinder-action/dist/post.cjs

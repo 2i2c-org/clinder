@@ -1,0 +1,25 @@
+{
+  "name": "binderhub-client-next",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Simple API client for the BinderHub EventSource API",
+  "exports": {
+    ".": "./lib/client.js",
+    "./*.js": "./lib/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2i2c-org/clinder.git"
+  },
+  "author": "Project Jupyter Contributors",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/2i2c-org/clinder/issues"
+  },
+  "homepage": "https://github.com/2i2c-org/clinder#readme",
+  "dependencies": {
+    "eventsource": "^4.1.0",
+    "event-iterator": "^2.0.0"
+  }
+}

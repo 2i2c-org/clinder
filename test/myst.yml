@@ -1,0 +1,15 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: 4fa918ff-92a5-4e6f-b070-0630cc9cb63c
+  # title:
+  # description:
+  # keywords: []
+  # authors: []
+  github: https://github.com/2i2c-org/setup-binder-session
+  # To autogenerate a Table of Contents, run "myst init --write-toc"
+site:
+  template: book-theme
+  # options:
+  #   favicon: favicon.ico
+  #   logo: site_logo.png

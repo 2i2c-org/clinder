@@ -1,0 +1,8 @@
+{
+  "name": "clinder-workspace",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}
+
