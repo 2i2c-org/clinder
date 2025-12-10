@@ -81,3 +81,9 @@ Unfortunately, various dependencies are CommonJS only, so we cannot trivially tr
 1. Merge to main with a branch containing the built action `npm run build -w packages/clinder-action`
 1. Create a GitHub release with the tag `action-vX`.
 
+
+### Testing
+
+This repo doesn't yet add any testing for the action or the CI packages. This is primarily because the intention is to use the upstream `@jupyterhub/binderhub-client` package, which itself should be tested. Whilst we can test the CLI in time, it remains out of scope.
+
+The action _is_ tested in CI, which ensures that a remote Jupyter Book is running in a  non-CI environment.
