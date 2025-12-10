@@ -48,7 +48,7 @@ jobs:
       # Sets the JUPYTER_BASE_URL and JUPYTER_TOKEN env vars
       - uses: 2i2c-org/clinder@v1
         with:
-          hub-url: https://mybinder.org/v2/
+          hub-url: https://mybinder.org/
       - uses: actions/setup-node@v4
         with:
           node-version: 20.x
