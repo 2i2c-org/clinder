@@ -5,6 +5,7 @@
   "bin": {
     "clinder": "dist/main.cjs"
   },
+  "description": "A CLI for starting/stopping BinderHub sessions.",
   "scripts": {
     "build": "node ./esbuild.mjs"
   },
@@ -12,5 +13,14 @@
     "binderhub-client-next": "^0.1.0",
     "commander": "^14.0.2",
     "esbuild": "^0.27.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2i2c-org/clinder.git"
+  },
+  "author": "Angus Hollands <goosey15@gmail.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/2i2c-org/clinder/issues"
   }
 }

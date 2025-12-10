@@ -60,63 +60,15 @@ jobs:
 
 ## CLI
 
-### Overview
-
-```
-Usage: clinder [options] [command]
-
-A simple CLI tool to load a BinderHub session
-
-Options:
-  -V, --version                      output the version number
-  -h, --help                         display help for command
-
-Commands:
-  start [options] <binderhub <url>>  Start a BinderHub session
-  stop <url <url>> <token <token>>   Stop a BinderHub session
-  help [command]                     display help for command
-```
-
-### Start
-
-```
-Usage: clinder start [options] <binderhub <url>>
-
-Start a BinderHub session
-
-Arguments:
-  binderhub <url>       BinderHub URL
-
-Options:
-  --github-repo <repo>  GitHub repo
-  --github-ref <ref>    GitHub ref (default: "HEAD")
-  --json                Output JSON
-  --build-token         BinderHub build token
-  -h, --help            display help for command
-```
-
-### Stop
-
-```
-Usage: clinder stop [options] <url <url>> <token <token>>
-
-Stop a BinderHub session
-
-Arguments:
-  url <url>      session URL
-  token <token>  session token
-
-Options:
-  -h, --help     display help for command
-```
+See <https://github.com/2i2c-org/clinder/blob/main/packages/clinder/README.md>
 
 ## Development
+
 This monorepoe contains three packages:
+
 - `binderhub-client-next` — a fork of `@jupyterhub/binderhub-client` that supports running in a Node.js environment.
 - `clinder-action` — a GitHub action that spins up and tears down a BinderHub instance.- `clinder` — a CLI to start up and tear down a BinderHub instance locally.
 
 `binderhub-client-next` is a private package, and is bundled into the other packages. We use `esbuild` to bundle dependencies and transpile to CJS.
 
 Unfortunately, various dependencies are CommonJS only, so we cannot trivially transpile to ESM. However, ESM is nicer to author, so we use ESM for the package definitions.
-
-
