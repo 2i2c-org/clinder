@@ -1,7 +1,7 @@
 {
   "name": "clinder",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "bin": {
     "clinder": "dist/main.cjs"
   },
