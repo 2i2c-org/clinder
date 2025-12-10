@@ -72,3 +72,12 @@ This monorepoe contains three packages:
 `binderhub-client-next` is a private package, and is bundled into the other packages. We use `esbuild` to bundle dependencies and transpile to CJS.
 
 Unfortunately, various dependencies are CommonJS only, so we cannot trivially transpile to ESM. However, ESM is nicer to author, so we use ESM for the package definitions.
+
+### Making a release for the CLI
+1. Merge to main with the new version in `package.json`
+1. Create a GitHub release with tag `cli-vX.X.X`
+
+### Making a release for the action
+1. Merge to main with a branch containing the built action `npm run build -w packages/clinder-action`
+1. Create a GitHub release with the tag `action-vX`.
+
