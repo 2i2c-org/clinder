@@ -4,7 +4,7 @@
 
 This action establishes a BinderHub session, and exposes the Jupyter server information to the current job. This makes it possible to use BinderHub for remote execution within a GitHub Actions workflow.
 
-## How it works
+## How to use it
 
 - Configure the action to point it to a Binder-ready repository (and optionally a BinderHub if different from mybinder.org).
 - When the action runs, it will:
