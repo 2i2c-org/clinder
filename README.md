@@ -10,6 +10,7 @@ This action establishes a BinderHub session, and exposes the Jupyter server info
 - When the action runs, it will:
 - Create a Binder session using that configuration.
 - Export environment variables you can use in subsequent actions to run code in the Binder environment.
+- When the GitHub Workflow completes, the BinderHub server will be shut down.
 
 When the action is complete, you'll have a running Binder session that you can use to run code in your GitHub Workflow.
 It will output two environment variables you can use to **execute code in that Binder session**:
