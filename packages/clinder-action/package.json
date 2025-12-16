@@ -2,7 +2,7 @@
   "name": "clinder-action",
   "type": "module",
   "private": true,
-  "version": "1",
+  "version": "1.0.1",
   "main": "main.mjs",
   "dependencies": {
     "@actions/core": "^1.11.1",

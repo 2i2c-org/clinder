@@ -25,18 +25,23 @@ async function main() {
 
     // Iterate over the build logs
     for await (const data of builder.fetch()) {
+      if (data.message !== undefined) {
+        core.info(data.message.trimEnd());
+      }
       switch (data.phase) {
         case "building":
         case "pushing":
         case "launching":
         case "waiting":
-        case "built":
-          core.info(data.message.trimEnd());
+        case "fetching":
+        case "built": {
           break;
-        case "failed":
+        }
+        case "failed": {
           core.setFailed(data.message.trimEnd());
           process.exit(1);
-        case "ready":
+        }
+        case "ready": {
           // Jupyter Server token is also a secret
           core.setSecret(data.token);
 
@@ -54,9 +59,11 @@ async function main() {
 
           core.notice(`Started Jupyter Server at ${data.url}`);
           process.exit(0);
-        default:
-          core.setFailed(`Unknown phase "${data.phase}" from builder`);
-          process.exit(1);
+        }
+        default: {
+          core.debug(`Unknown phase "${data.phase}" from builder`);
+          break;
+        }
       }
     }
     // Do stuff

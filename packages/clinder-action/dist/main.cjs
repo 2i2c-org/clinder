@@ -542,7 +542,7 @@ var require_tunnel = __commonJS({
         connectOptions.headers = connectOptions.headers || {};
         connectOptions.headers["Proxy-Authorization"] = "Basic " + new Buffer(connectOptions.proxyAuth).toString("base64");
       }
-      debug("making CONNECT request");
+      debug2("making CONNECT request");
       var connectReq = self.request(connectOptions);
       connectReq.useChunkedEncodingByDefault = false;
       connectReq.once("response", onResponse);
@@ -562,7 +562,7 @@ var require_tunnel = __commonJS({
         connectReq.removeAllListeners();
         socket.removeAllListeners();
         if (res.statusCode !== 200) {
-          debug(
+          debug2(
             "tunneling socket could not be established, statusCode=%d",
             res.statusCode
           );
@@ -574,7 +574,7 @@ var require_tunnel = __commonJS({
           return;
         }
         if (head.length > 0) {
-          debug("got illegal response body from proxy");
+          debug2("got illegal response body from proxy");
           socket.destroy();
           var error = new Error("got illegal response body from proxy");
           error.code = "ECONNRESET";
@@ -582,13 +582,13 @@ var require_tunnel = __commonJS({
           self.removeSocket(placeholder);
           return;
         }
-        debug("tunneling connection has established");
+        debug2("tunneling connection has established");
         self.sockets[self.sockets.indexOf(placeholder)] = socket;
         return cb(socket);
       }
       function onError(cause) {
         connectReq.removeAllListeners();
-        debug(
+        debug2(
           "tunneling socket could not be established, cause=%s\n",
           cause.message,
           cause.stack
@@ -650,9 +650,9 @@ var require_tunnel = __commonJS({
       }
       return target;
     }
-    var debug;
+    var debug2;
     if (process.env.NODE_DEBUG && /\btunnel\b/.test(process.env.NODE_DEBUG)) {
-      debug = function() {
+      debug2 = function() {
         var args = Array.prototype.slice.call(arguments);
         if (typeof args[0] === "string") {
           args[0] = "TUNNEL: " + args[0];
@@ -662,10 +662,10 @@ var require_tunnel = __commonJS({
         console.error.apply(console, args);
       };
     } else {
-      debug = function() {
+      debug2 = function() {
       };
     }
-    exports2.debug = debug;
+    exports2.debug = debug2;
   }
 });
 
@@ -19876,10 +19876,10 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
       return process.env["RUNNER_DEBUG"] === "1";
     }
     exports2.isDebug = isDebug;
-    function debug(message) {
+    function debug2(message) {
       (0, command_1.issueCommand)("debug", {}, message);
     }
-    exports2.debug = debug;
+    exports2.debug = debug2;
     function error(message, properties = {}) {
       (0, command_1.issueCommand)("error", (0, utils_1.toCommandProperties)(properties), message instanceof Error ? message.toString() : message);
     }
@@ -20519,18 +20519,23 @@ async function main() {
       buildToken
     });
     for await (const data of builder.fetch()) {
+      if (data.message !== void 0) {
+        core.info(data.message.trimEnd());
+      }
       switch (data.phase) {
         case "building":
         case "pushing":
         case "launching":
         case "waiting":
-        case "built":
-          core.info(data.message.trimEnd());
+        case "fetching":
+        case "built": {
           break;
-        case "failed":
+        }
+        case "failed": {
           core.setFailed(data.message.trimEnd());
           process.exit(1);
-        case "ready":
+        }
+        case "ready": {
           core.setSecret(data.token);
           core.setOutput("url", data.url);
           core.setOutput("token", data.token);
@@ -20540,9 +20545,11 @@ async function main() {
           core.saveState("binder-token", data.token);
           core.notice(`Started Jupyter Server at ${data.url}`);
           process.exit(0);
-        default:
-          core.setFailed(`Unknown phase "${data.phase}" from builder`);
-          process.exit(1);
+        }
+        default: {
+          core.debug(`Unknown phase "${data.phase}" from builder`);
+          break;
+        }
       }
     }
   } catch (err) {

@@ -34,13 +34,16 @@ async function startSession(hub, options) {
 
   // Iterate over the build logs
   for await (const data of builder.fetch()) {
+    if (data.message !== undefined) {
+      log(data.message.trimEnd());
+    }
     switch (data.phase) {
       case "building":
       case "pushing":
       case "launching":
       case "waiting":
+      case "fetching":
       case "built":
-        log(data.message.trimEnd());
         break;
       case "ready":
         // Output to stdout
@@ -62,8 +65,8 @@ async function startSession(hub, options) {
         process.exit(1);
 
       default:
-        logError(`Unknown phase "${data.phase}" from builder`);
-        process.exit(2);
+        log(`Unknown phase "${data.phase}" from builder`);
+        break;
     }
   }
 }
