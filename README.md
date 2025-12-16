@@ -4,6 +4,21 @@
 
 This action establishes a BinderHub session, and exposes the Jupyter server information to the current job. This makes it possible to use BinderHub for remote execution within a GitHub Actions workflow.
 
+## How it works
+
+- Configure the action to point it to a Binder-ready repository (and optionally a BinderHub if different from mybinder.org).
+- When the action runs, it will:
+- Create a Binder session using that configuration.
+- Export environment variables you can use in subsequent actions to run code in the Binder environment.
+
+When the action is complete, you'll have a running Binder session that you can use to run code in your GitHub Workflow.
+It will output two environment variables you can use to **execute code in that Binder session**:
+
+- `JUPYTER_BASE_URL`: The URL of the Jupyter server running in BinderHub.
+- `JUPYTER_TOKEN`: The authentication token needed to execute code on that server.
+
+Use these tokens in subsequent actions in the GitHub workflow. For example, Jupyter Book and MyST Documents automatically use the values of these environment variables to choose where they execute code. If you ensure the `JUPYTER_*` variables are in the global environment when a Jupyter Book is built, it will use the BinderHub to execute code.
+
 ## Inputs
 
 ### `hub-url`
