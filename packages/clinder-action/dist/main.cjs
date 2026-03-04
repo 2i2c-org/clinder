@@ -20363,8 +20363,8 @@ function getBaseURL() {
   return doc && typeof doc == "object" && "baseURI" in doc && typeof doc.baseURI == "string" ? doc.baseURI : void 0;
 }
 
-// ../binderhub-client-next/lib/client.js
-var import_event_iterator = __toESM(require_node(), 1);
+// ../../binderhub/js/packages/binderhub-client/lib/client.js
+var import_event_iterator = __toESM(require_node());
 function _getXSRFToken() {
   let cookie = "";
   try {
@@ -20474,9 +20474,10 @@ var BinderRepository = class {
         }
       };
       const onError = (error) => {
+        const reason = error.message === void 0 ? "" : `: ${error.message}`;
         queue.push({
-          phase: "unknown",
-          message: `Error in event stream: ${error}
+          phase: "failed",
+          message: `Error in event stream${reason}
 `
         });
         queue.stop();
