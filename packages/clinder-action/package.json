@@ -6,7 +6,7 @@
   "main": "main.mjs",
   "dependencies": {
     "@actions/core": "^1.11.1",
-    "binderhub-client-next": "^0.1.0"
+    "@jupyterhub/binderhub-client": "../../binderhub/js/packages/binderhub-client/"
   },
   "scripts": {
     "build": "node ./esbuild.mjs"

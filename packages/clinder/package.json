@@ -10,7 +10,7 @@
     "build": "node ./esbuild.mjs"
   },
   "devDependencies": {
-    "binderhub-client-next": "^0.1.0",
+    "@jupyterhub/binderhub-client": "../../binderhub/js/packages/binderhub-client/",
     "commander": "^14.0.2",
     "esbuild": "^0.27.1"
   },

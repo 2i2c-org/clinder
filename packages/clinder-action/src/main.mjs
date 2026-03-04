@@ -1,4 +1,4 @@
-import { BinderRepository } from "binderhub-client-next";
+import { BinderRepository } from "@jupyterhub/binderhub-client";
 import * as core from "@actions/core";
 
 async function main() {

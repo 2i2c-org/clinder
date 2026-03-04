@@ -1,0 +1,4 @@
+[submodule "binderhub"]
+	path = binderhub
+	url = https://github.com/agoose77/binderhub
+	branch = feat-node-support
