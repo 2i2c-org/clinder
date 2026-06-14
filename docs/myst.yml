@@ -9,6 +9,7 @@ project:
     - file: index.md
     - file: github-action.md
     - file: cli.md
+    - file: preview-deploys.md
     - file: live-demo.md
     - file: contributing.md
       children:
