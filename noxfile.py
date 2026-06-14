@@ -18,8 +18,9 @@ def docs_binder(session):
     ref = os.environ["BRANCH"]
 
     # Start a Binder session, clinder prints {url, token} as JSON on the last line.
+    # use @latest to force netlify to use the published pkg, not try to build locally
     out = session.run(
-        "npx", "-y", "clinder", "start", "https://mybinder.org",
+        "npx", "-y", "clinder@latest", "start", "https://mybinder.org",
         "--github-repo", repo, "--github-ref", ref, "--json",
         external=True, silent=True,
     )
@@ -32,7 +33,7 @@ def docs_binder(session):
                     env={"JUPYTER_BASE_URL": s["url"], "JUPYTER_TOKEN": s["token"]})
         
     # Stop the Binder session.
-    session.run("npx", "-y", "clinder", "stop", s["url"], s["token"], external=True)
+    session.run("npx", "-y", "clinder@latest", "stop", s["url"], s["token"], external=True)
 
 
 @nox.session(name="docs-live")
