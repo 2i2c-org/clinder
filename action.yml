@@ -7,11 +7,14 @@ inputs:
     required: true
   repo:
     description: GitHub repository, e.g jupyterlab/jupyterlab. Empty for this repository.
-    default: ${{ github.repository }}
+    # On a fork PR, build the fork's repo (head), not the base repo.
+    default: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
     required: true
   ref:
     description: GitHub ref. Empty for the current ref.
-    default: ${{ github.ref }}
+    # Use the branch name (head.ref / ref_name), not the full ref path,
+    # which BinderHub's GitHub provider can't resolve.
+    default: ${{ github.event.pull_request.head.ref || github.ref_name }}
     required: true
   build-token:
     description: BinderHub build token

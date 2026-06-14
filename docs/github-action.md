@@ -9,6 +9,13 @@ The action:
 
 It is meant to be used with **Jupyter Book** or the **MyST Document Engine**, which automatically detect these environment variables in executing notebooks.
 
+:::{warning} Fork PRs can run untrusted code on Binder
+When triggered by a `pull_request` from a fork, the action executes the notebooks in the fork on your BinderHub, so anyone opening a PR can execute arbitrary code there.
+Require approval before running workflows on fork PRs:
+
+**{kbd}`Settings` -> {kbd}`Actions` -> {kbd}`General` -> {kbd}`Fork pull request workflows`. Choose *Require approval for all outside collaborators* (or *all external contributors*). See the [GitHub Pull Request docs](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/approve-runs-from-forks) for more information.
+:::
+
 ## Example
 
 Build a MyST site whose code is executed on mybinder.org rather than on the CI runner:
