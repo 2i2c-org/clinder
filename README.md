@@ -25,3 +25,4 @@ steps:
 - [Contributing guide](https://2i2c-org.github.io/clinder/contributing)
 
 Clinder is maintained by [2i2c](https://2i2c.org) and licensed BSD-3-Clause.
+TEST
