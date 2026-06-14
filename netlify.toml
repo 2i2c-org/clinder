@@ -3,6 +3,6 @@
 # changes into docs/ and builds with mystmd (which brings its own Node).
 [build]
   publish = "docs/_build/html"
-  command = "pip install nox && nox -s docs"
+  command = "pip install nox && nox -s docs-binder"
   # Only build pull request deploy previews and skip builds on `main`
   ignore = "[ \"$CONTEXT\" != \"deploy-preview\" ]"
