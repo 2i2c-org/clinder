@@ -15,7 +15,7 @@ def docs(session):
 def docs_binder(session):
     """Build the docs with notebooks executed on Binder (used by Netlify previews)."""
     repo = os.environ["REPOSITORY_URL"].removeprefix("https://github.com/")
-    ref = os.environ["BRANCH"]
+    ref = os.environ["HEAD"]
 
     # Start a Binder session, clinder prints {url, token} as JSON on the last line.
     # use @latest to force netlify to use the published pkg, not try to build locally
